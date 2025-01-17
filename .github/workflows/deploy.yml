@@ -36,6 +36,8 @@ jobs:
 
       - name: Deploy to Github Pages
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure the token is passed here
         run: |
+          # Configure git to use HTTPS with the GitHub token for authentication
+          git remote set-url origin https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           npm run deploy
