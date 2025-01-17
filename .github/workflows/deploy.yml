@@ -12,7 +12,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04  # Explicitly using ubuntu-22.04
+    runs-on: ubuntu-22.04  
 
     steps:
       - name: Checkout Code
@@ -36,8 +36,7 @@ jobs:
 
       - name: Deploy to Github Pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure the token is passed here
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         run: |
-          # Configure git to use HTTPS with the GitHub token for authentication
           git remote set-url origin https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
           npm run deploy
